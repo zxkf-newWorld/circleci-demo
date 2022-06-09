@@ -32,7 +32,7 @@ if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
   # 删除掉旧的文件内容
   git rm rf .
 else 
-  git checkout --origin gh-pages
+  git checkout --orphan gh-pages
 fi
 
 # 将构建好的文件目录拷贝进去
