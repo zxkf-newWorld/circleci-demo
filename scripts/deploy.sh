@@ -30,7 +30,7 @@ if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
   # 检出分支
   git checkout gh-pages
   # 删除掉旧的文件内容
-  git rm rf .
+  git rm -rf .
 else 
   git checkout --orphan gh-pages
 fi
