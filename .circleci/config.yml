@@ -9,11 +9,24 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "c9:d9:4f:62:63:94:44:ac:49:68:19:f0:3e:77:71:5f"
+            - 'c9:d9:4f:62:63:94:44:ac:49:68:19:f0:3e:77:71:5f'
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies_demo
       - run:
           name: Install
           command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies_demo
       - run:
           name: Build
           command: npm run build
+      - run:
+          name: Auth Deploy
+          command: chmod +x scripts/deploy.sh
+      - run:
+          name: Deploy
+          command: ./scripts/deploy.sh
